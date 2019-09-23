@@ -14,10 +14,7 @@ import com.zhaoyuxi.cms.entity.Article;
 */
 public interface ArticleMapper {
 
-/*	@Select("select id,title,picture,channel_id AS channelId,category_id categoryId,user_id AS userId,hits,hot,status,deleted,created,updated "
-			+ " from cms_article "
-			+ " where catygory_id = ${value}")
-	@ResultType(Article.class)*/
+
 	List<Article> list(@Param("channelId") Integer channelId,
 			@Param("catId") Integer cid);
 
@@ -39,6 +36,33 @@ public interface ArticleMapper {
 	 */
 	@Update("update cms_article set status=#{status} , updated=now() where id=#{id}")
 	int updateStatus(@Param("id") Integer id, @Param("status") Integer status);
-	
 
+	/**
+	 * 获取热门文章
+	 * @return
+	 */
+	List<Article> hotList();
+
+	
+	/** 
+	 * 获取最新文章
+	 * @return
+	 */
+	List<Article> lastArticles();
+	
+	
+	/**
+	 * 设置热门
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	@Update("update cms_article set hot=#{status} , updated=now() where id=#{id}")
+	int updateHot(@Param("id") Integer id, @Param("status") Integer status);
+	
+	@Update("update cms_article set title=#{title},content=#{content1},channel_id=#{channelId},category_id=#{categoryId} where id=#{id}")
+	int updatea(@Param("id")Integer id,@Param("title") String title,@Param("categoryId") Integer categoryId, @Param("channelId")Integer channelId,@Param("content1") String content1);
+
+	@Update("update cms_article set commentCnt = commentCnt + 1 where id=#{value}")
+	void increaseCommentCnt(Integer articleId);
 }

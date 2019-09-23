@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		user.setCreateTime(new Date());//设置注册时间
 		user.setLocked(0); // 不锁定
-		user.setRole("1");//设置角色  普通用户
+		user.setRole("0");//设置角色  普通用户
 		user.setPassword(Md5Utils.md5(user.getPassword()));
 		
 		if(userMapper.add(user)>0) {
@@ -112,5 +112,10 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
-}
+	@Override
+	public int updateLocked(Integer userId, Integer locked) {
+		// TODO Auto-generated method stub
+		return userMapper.updateLocked( userId, locked);
+	}
 
+}

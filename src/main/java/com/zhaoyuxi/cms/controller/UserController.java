@@ -90,7 +90,12 @@ public class UserController {
 		if(loginUser==null) {
 			request.setAttribute("error", "用户密码错误");
 			return "user/login";
-		}else {
+		}else if(loginUser.getLocked()==1){
+			request.setAttribute("error", "很遗憾，阁下已经被冻结了！！哈哈");
+			return "user/login";
+		}else
+		{
+			
 			request.getSession().setAttribute(ConstantFinal.USER_SESSION_KEY, loginUser);
 			return "1".equals(loginUser.getRole())?"redirect:/admin/index" : "redirect:/user/home";	
 		}
@@ -140,6 +145,21 @@ public class UserController {
 	public String logout(HttpServletRequest request) {
 		request.getSession().removeAttribute(ConstantFinal.USER_SESSION_KEY);
 		return "redirect:/index";
+	}
+	
+	/**
+	 * 修改用户的状态
+	 * @param request
+	 * @param id
+	 * @param locked
+	 * @return
+	 */
+	@RequestMapping("update")
+	@ResponseBody
+	public boolean update(HttpServletRequest request,Integer id,Integer locked) {
+		return userService.updateLocked(id,locked)>0;
+		
+	
 	}
 	
 	

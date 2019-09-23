@@ -14,10 +14,9 @@ function myopen(id){
 	window.open("/article/getDetail?aId="+id,"_blank");
 	
 }
-function toupdate(id){
-	 $('#center').load("/article/toupdate?aId="+id);
+function toUpdate(id) {
+	$('#center').load("/article/toUpdate?id="+id);
 }
-
 </script>
 </head>
 <body>
@@ -27,8 +26,7 @@ function toupdate(id){
 			<dt><a href="javascript:myopen(${article.id })">${article.title }</a></dt>
 			<dd>作者:${sessionScope.USER_SESSION_KEY.username} 发布时间:${article.created}
 				频道:${article.chnName}  分类:${article.catName}
-				
-				<a href="javascript:toupdate(${article.id })">修改</a>
+			    <a href="javascript:toUpdate(${article.id })">修改</a>
 			</dd>
 		</dl>
 		<hr>
@@ -44,12 +42,13 @@ function toupdate(id){
 	    	
 	    	  //获取点击的的url
 	        var url = $(this).attr('data');
-	        alert(url);
+	        // alert(url);
 	    
 	       //在中间区域显示地址的内容
 	       $('#center').load(url);
 	    });
 		
 	})
+	
 </script>
 </html>

@@ -57,4 +57,3 @@ public interface Article4VoteMapper {
 	
 
 }
-

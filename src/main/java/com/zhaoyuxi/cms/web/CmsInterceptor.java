@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zhaoyuxi.cms.utils.ConstantFinal;
+
 /**
 *@author 作者:赵玉玺
 *@version 创建时间：2019年9月18日 下午7:41:07
@@ -35,4 +37,3 @@ public class CmsInterceptor implements HandlerInterceptor {
 	}
 
 }
-

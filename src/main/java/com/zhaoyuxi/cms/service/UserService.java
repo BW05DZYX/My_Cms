@@ -59,6 +59,14 @@ public interface UserService {
 	 */
 	PageInfo<User> search(int pageNumber, int pageSize, String name);
 	
+	/**
+	 * 
+	 * @param id  用户的id
+	 * @param locked 是否锁定  1 表示锁定 0 表示不锁定
+	 * @return
+	 */
+	int updateLocked(Integer id, Integer locked);
+	
 	
 	
 }

@@ -33,6 +33,11 @@ public class VoteController {
 	@Autowired
 	Article4VoteService avService;
 	
+	/**
+	 * 查询投票列表
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("list")
 	public String list(HttpServletRequest request) {
 		List<Article4Vote> list = avService.list();
@@ -40,13 +45,23 @@ public class VoteController {
 		return "my/vote/list";
 		
 	}
-	
+	/**
+	 * 去添加投票页面
+	 * @param request
+	 * @return
+	 */
 	@GetMapping("push")
 	public String push(HttpServletRequest request) {
 		return "my/vote/add";
 		
 	}
 	
+	/**
+	 * 添加投票
+	 * @param request
+	 * @param av
+	 * @return
+	 */
 	@PostMapping("push")
 	@ResponseBody
 	public boolean  push(HttpServletRequest request,Article4Vote av) {
@@ -55,7 +70,7 @@ public class VoteController {
 	}
 	
 	/**
-	 * 
+	 * 获取票数信息
 	 * @param request
 	 * @param arId  投票的id
 	 * @return
@@ -102,6 +117,13 @@ public class VoteController {
 		return "my/vote/detail";
 	}
 	
+	/**
+	 * 进行投票
+	 * @param request
+	 * @param articleId
+	 * @param option
+	 * @return
+	 */
 	@PostMapping("vote")
 	@ResponseBody
 	public Boolean push(HttpServletRequest request,Integer articleId,Character option) {

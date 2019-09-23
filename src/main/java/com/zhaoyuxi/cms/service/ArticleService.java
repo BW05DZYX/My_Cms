@@ -1,5 +1,7 @@
 package com.zhaoyuxi.cms.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.zhaoyuxi.cms.entity.Article;
 
@@ -53,8 +55,26 @@ public interface ArticleService {
 	 * @return  修改数据的条数
 	 */
 	int check(Integer id, Integer status);
+
+	/**
+	 *  获取热门文章
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	PageInfo<Article> listhots(Integer pageNum, Integer pageSize);
+
+	// 获取最新
+	List<Article> last();
+
+	/**
+	 * 设置热门
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	int setHot(Integer id, Integer status);
 	
 	
 	
 }
-

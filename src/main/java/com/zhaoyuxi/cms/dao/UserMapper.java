@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.zhaoyuxi.cms.entity.User;
 
@@ -51,6 +52,18 @@ public interface UserMapper {
 			+ " order by createTime desc ")
 	@ResultType(User.class)
 	List<User> queryList(@Param("name") String name);
+
+
+	/**
+	 * 修改用户的锁定状态
+	 * @param userId
+	 * @param locked
+	 * @return
+	 */
+	@Update("update cms_user set locked=#{locked},update_time=now() WHERE id=#{userId}")
+	int updateLocked(@Param("userId") Integer userId, @Param("locked") Integer locked);
+	
+	
 	
 	
 	

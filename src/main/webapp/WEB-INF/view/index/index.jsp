@@ -51,13 +51,13 @@
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="d-block w-100" src="/pic/1.jpg" alt="First slide">
+							<img class="d-block w-100" src="<%=request.getContextPath() %>/resource/pic/1.jpg" alt="First slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100" src="/pic/2.jpg" alt="Second slide">
+							<img class="d-block w-100" src="<%=request.getContextPath() %>/resource/pic/2.jpg" alt="Second slide">
 						</div>
 						<div class="carousel-item">
-							<img class="d-block w-100" src="/pic/3.jpg" alt="Third slide">
+							<img class="d-block w-100" src="<%=request.getContextPath() %>/resource/pic/3.jpg" alt="Third slide">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#carousel" role="button"
@@ -71,7 +71,7 @@
 				<br />
 				<div id="hot">
 					<!-- 新闻热点 -->
-					<c:forEach items="${hotList}" var="c">
+					<c:forEach items="${pageInfo.list}" var="c">
 						<div class="media">
 							<img class="align-self-start mr-3" src="/pic/${c.picture }"
 								alt="no pic">
@@ -116,8 +116,8 @@
 					<div class="card-header">最新文章</div>
 					<div class="card-body">
 						<ol>
-							<c:forEach items="${lastArticles}" var="article">
-								<li class="text-truncate"><a href="/article/${article.id}">${article.title}</a></li>
+							<c:forEach items="${lasts}" var="article">
+								<li class="text-truncate"><a href="/article/getDetail?aId=${article.id}">${article.title}</a></li>
 							</c:forEach>
 						</ol>
 					</div>
@@ -125,7 +125,7 @@
 			   <div class="card">
 			   <div class="card-header">友情链接</div>
 			      <ol>
-			    <c:forEach items="${linkList}" var="l">
+			    <c:forEach items="${links}" var="l">
 			      <li class="text-truncate text-center"><a href="${l.url }" target="_blank">${l.text}</a></li>
 			    
 			    </c:forEach>

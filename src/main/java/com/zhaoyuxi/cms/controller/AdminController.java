@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("admin")
 public class AdminController {
 	
+	/**
+	 * 跳转到管理员管理页面
+	 * @return
+	 */
 	@GetMapping("index")
 	public String index() {
 		return "admin/index";

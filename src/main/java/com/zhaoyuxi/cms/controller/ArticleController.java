@@ -67,6 +67,17 @@ public class ArticleController {
 		request.setAttribute("pageInfo", arPage);
 		return "index/article/list";
 	}
+	
+	
+	@RequestMapping("hots")
+	public String hots(HttpServletRequest request, 
+			 @RequestParam( value="pageSize",defaultValue = "5") Integer pageSize,
+			 @RequestParam(value="page",defaultValue = "1") Integer pageNum) {
+		
+		PageInfo<Article> arPage = articleService.listhots(pageNum, pageSize);
+		request.setAttribute("pageInfo", arPage);
+		return "index/article/list";
+	}
 
 	/**
 	 * 
@@ -232,19 +243,23 @@ public class ArticleController {
 		
 	}
 	
-	@GetMapping("toupdate")
-	public String toupdate(String id) {
-		return "my/article/publish";
+	@PostMapping("sethot")
+	@ResponseBody
+	public boolean sethot(HttpServletRequest request,Integer id,Integer status) {
+		
+		int result = articleService.setHot(id,status);
+		return result>0;
+		
 	}
-
 	
-	@RequestMapping("toupdate")
-	public String toupdate(HttpServletRequest request,Integer aId) {
-		 Article article = articleService.findById(aId);
-		 request.setAttribute("article", article);
-		 request.setAttribute("content1", article.getContent());
-		 return "my/article/update";
+	
+	
+	@RequestMapping("toUpdate")
+	public String toUpdate(HttpServletRequest request,Integer id) {
+		Article article = articleService.findById(id);
+		request.setAttribute("article", article);
+		request.setAttribute("content1", article.getContent());
+		return "my/article/update";	
 	}
 
 }
-

@@ -16,6 +16,10 @@ import com.zhaoyuxi.cms.entity.Channel;
 @Mapper
 public interface ChannelMapper {
 
+	/**
+	 * 查询所有频道
+	 * @return
+	 */
 	@Select("select * from cms_channel order by id")
 	@ResultType(Channel.class)
 	List<Channel> getChannels();

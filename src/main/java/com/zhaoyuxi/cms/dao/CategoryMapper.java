@@ -15,6 +15,11 @@ import com.zhaoyuxi.cms.entity.Category;
 @Mapper
 public interface CategoryMapper {
 
+	/**
+	 * 通过频道id查询分类列表
+	 * @param cid
+	 * @return
+	 */
 	@Select("select id,name,channel_id channelId from cms_category where channel_id = #{value} ")
 	List<Category> getCategoryByChId(Integer cid);
 

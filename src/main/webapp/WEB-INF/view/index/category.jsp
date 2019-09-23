@@ -63,14 +63,34 @@
           var url = $(this).attr('data');
       	 // console.log(url);
          //在中间区域显示地址的内容
-        /*  alert("点击了  --- 这个url ： " + url) */
+         // alert("点击了  --- 这个url ： " + url) 
          $('#content-wrapper').load(url);
          
       });
-    //当点击左侧菜单时  加载url
-    $('.mlink').click(function (e) {..
-		window.open("/article/getDetail?aId=" + id, "_blank")
-	}
+	   
+    $('.mlink').click(function(e) {
+		//获取点击的的url
+		var url = $(this).attr('data');
+		/* // alert("点击了 " +url ); */
+		// console.log(url);
+		//隐藏轮播
+		$("#carousel").hide();
+		//隐藏热点
+		$("#hot").hide();
+		//让原有的分类数据清空
+		$('#category').empty();
+		//在中间区域显示点击channel 对应的内容
+		$('#category').load(url);
+	});
+	   
+	   
+  
+   
+	   
+   
+   
+		
+});
 
 </script>
 <script type="text/javascript" src="/resource/js/cms.js"></script>

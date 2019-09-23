@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
-	String htmlData = request.getAttribute("content1") != null ? (String)request.getAttribute("content1") : "";
+request.setCharacterEncoding("UTF-8");
+String htmlData = request.getAttribute("content1") != null ? (String)request.getAttribute("content1") : "";
 %>
 <!DOCTYPE html>
 <html>
@@ -38,10 +38,10 @@
 </head>
 <body>
 	<form action="" id="form">
-		<input type="hidden" value="${article.id}" name="id">
+	<input type="hidden" value="${article.id }" name="id">
 		<div class="form-group row ">
 			<label for="title">文章标题</label> <input type="text"
-				class="form-control" id="title" value="${article.title}" name="title" placeholder="请输入标题">
+				class="form-control" id="title" value="${article.title }" name="title" placeholder="请输入标题">
 		</div>
 
 
@@ -98,7 +98,9 @@ function publish(){
 			contentType : false,
 			url:"/article/update",
 			success:function(obj){
-					alert("发布成功!")
+				if(obj){
+					alert("发布成功了!")
+					$('#center').load("/article/listMyArticle");
 				}else{
 					alert("发布失败")
 				}
@@ -125,17 +127,46 @@ $(function(){
 	
 	
 	//自动加载文章的栏目
+	
 	$.ajax({
 		type:"get",
 		url:"/article/getAllChn",
 		success:function(list){
 			$("#channel").empty();
 			for(var i in list){
-				$("#channel").append("<option value='"+list[i].id+"'>"+list[i].name+"</option>")
+				if(${article.channelId}==list[i].id){
+					$("#channel").append("<option selected value='"+list[i].id+"'>"+list[i].name+"</option>")
+					
+					// 频道的回显
+					 $("#category").empty();
+						//根据ID 获取栏目下的分类
+					 $.get("/article/getCatsByChn",{channelId:${article.channelId}},function(catlist){
+						
+						 for(var cati in catlist){
+						  	 if(catlist[cati].id==${article.categoryId}){
+								 $("#category").append("<option selected value='"+catlist[cati].id+"'>"+catlist[cati].name+"</option>")
+						 	 }else{
+						 		$("#category").append("<option value='"+catlist[cati].id+"'>"+catlist[cati].name+"</option>")
+						 	 }
+							 //处理回显
+							
+						 }
+						 
+					 })
+					
+					
+				}else{
+					$("#channel").append("<option value='"+list[i].id+"'>"+list[i].name+"</option>")
+				}
+				
 			}
 		}
 		
 	})
+	
+	
+	
+	
 	//为栏目添加绑定事件
 	$("#channel").change(function(){
 		 //先清空原有的栏目下的分类

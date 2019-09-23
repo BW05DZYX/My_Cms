@@ -49,8 +49,6 @@ public class CategoryController {
 		request.setAttribute("channelId",cid);
 		return "index/category";
 		
-		
-		
 	}
-		
+	
 }

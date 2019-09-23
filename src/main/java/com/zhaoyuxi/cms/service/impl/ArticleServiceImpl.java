@@ -91,5 +91,25 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleMapper.updateStatus(id,status);
 	}
 
-}
+	@Override
+	public PageInfo<Article> listhots(Integer pageNum, Integer pageSize) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(pageNum, pageSize);
+		List<Article> articles=  articleMapper.hotList();
+		
+		return new PageInfo<Article>(articles);
+	}
 
+	@Override
+	public List<Article> last() {
+		// TODO Auto-generated method stub
+		return   articleMapper.lastArticles();
+	}
+
+	@Override
+	public int setHot(Integer id, Integer status) {
+		// TODO Auto-generated method stub
+		return articleMapper.updateHot(id,status);
+	}
+
+}

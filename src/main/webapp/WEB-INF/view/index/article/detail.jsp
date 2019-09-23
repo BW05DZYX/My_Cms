@@ -14,8 +14,8 @@
 </head>
 <body>  
 <div class="container">
-
 		<dl>
+		   <dt><a href="javascript:history.back()">关闭窗口</a></dt>
 			<dt>${article.title }</dt>
 				<hr>
 			
